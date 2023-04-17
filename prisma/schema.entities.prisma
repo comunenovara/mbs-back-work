@@ -1,0 +1,92 @@
+model Incarico {
+	@@map("incarico")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	nominas	Nomina[]
+}
+
+model Fase {
+	@@map("fase")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	nominas	Nomina[]
+}
+
+model Progetto {
+	@@map("progetto")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	nominas	Nomina[]
+}
+
+model Tecnico {
+	@@map("tecnico")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	nominas	Nomina[]
+}
+
+model Azienda {
+	@@map("azienda")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	nominas	Nomina[]
+}
+
+model Nomina {
+	@@map("nomina")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+	pncaricoId		Int
+	pncarico		Incarico	@relation(fields: [pncaricoId], references: [id])
+
+	faseId		Int
+	fase		Fase	@relation(fields: [faseId], references: [id])
+
+	progettoId		Int
+	progetto		Progetto	@relation(fields: [progettoId], references: [id])
+
+	nominaId		Int?
+	nomina		Tecnico?	@relation(fields: [nominaId], references: [id])
+
+	aziendaId		Int?
+	azienda		Azienda?	@relation(fields: [aziendaId], references: [id])
+
+
+	ie		Boolean
+
+}
+
