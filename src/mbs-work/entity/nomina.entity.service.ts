@@ -16,10 +16,10 @@ export class NominaEntityService {
 			ie: nominaDto.ie,
 		};
 		// Relations
-		if(nominaDto.pncaricoId != null) {
-			prismaRequestArgs['data']['pncarico'] = {
+		if(nominaDto.incaricoId != null) {
+			prismaRequestArgs['data']['incarico'] = {
 				connect: {
-					id: nominaDto.pncaricoId
+					id: nominaDto.incaricoId
 				}
 			};
 		}
@@ -37,10 +37,10 @@ export class NominaEntityService {
 				}
 			};
 		}
-		if(nominaDto.nominaId != null) {
-			prismaRequestArgs['data']['nomina'] = {
+		if(nominaDto.tecnicoId != null) {
+			prismaRequestArgs['data']['tecnico'] = {
 				connect: {
-					id: nominaDto.nominaId
+					id: nominaDto.tecnicoId
 				}
 			};
 		}
@@ -60,10 +60,10 @@ export class NominaEntityService {
 				id: nominaDto.id,
 			},
 			data: {
-				pncaricoId: nominaDto.pncaricoId,
+				incaricoId: nominaDto.incaricoId,
 				faseId: nominaDto.faseId,
 				progettoId: nominaDto.progettoId,
-				nominaId: nominaDto.nominaId,
+				tecnicoId: nominaDto.tecnicoId,
 				aziendaId: nominaDto.aziendaId,
 				ie: nominaDto.ie,
 			},
@@ -84,10 +84,10 @@ export class NominaEntityService {
 		// Join
 		{
 			prismaRequestArgs['include'] = {
-				pncarico: true,
+				incarico: true,
 				fase: true,
 				progetto: true,
-				nomina: true,
+				tecnico: true,
 				azienda: true,
 			};
 		}
@@ -114,10 +114,10 @@ export class NominaEntityService {
 				id: id,
 			},
 			include: {
-				pncarico: true,
+				incarico: true,
 				fase: true,
 				progetto: true,
-				nomina: true,
+				tecnico: true,
 				azienda: true,
 			},
 		})

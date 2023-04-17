@@ -29,8 +29,8 @@ export class NominaDto {
 
 
 	@IsNumber()
-	pncaricoId?: number;
-	pncarico?: IncaricoDto;
+	incaricoId?: number;
+	incarico?: IncaricoDto;
 
 	@IsNumber()
 	faseId?: number;
@@ -41,8 +41,8 @@ export class NominaDto {
 	progetto?: ProgettoDto;
 
 	@IsNumber()
-	nominaId?: number;
-	nomina?: TecnicoDto;
+	tecnicoId?: number;
+	tecnico?: TecnicoDto;
 
 	@IsNumber()
 	aziendaId?: number;
