@@ -7,6 +7,99 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Project {
+	@@map("project")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	assignements	Assignement[]
+}
+
+model Role {
+	@@map("role")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+	haveWorkCategory		Boolean
+
+	assignements	Assignement[]
+}
+
+model WorkCategory {
+	@@map("workCategory")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	assignements	Assignement[]
+}
+
+model Employee {
+	@@map("employee")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	assignements	Assignement[]
+}
+
+model Company {
+	@@map("company")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	assignements	Assignement[]
+}
+
+model Assignement {
+	@@map("assignement")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+	projectId		Int
+	project		Project	@relation(fields: [projectId], references: [id])
+
+	roleId		Int
+	role		Role	@relation(fields: [roleId], references: [id])
+
+	workCategoryId		Int?
+	workCategory		WorkCategory?	@relation(fields: [workCategoryId], references: [id])
+
+	employeeId		Int?
+	employee		Employee?	@relation(fields: [employeeId], references: [id])
+
+	companyId		Int?
+	company		Company?	@relation(fields: [companyId], references: [id])
+
+
+	external		Boolean
+
+}
+
 model Incarico {
 	@@map("incarico")
 
@@ -22,19 +115,6 @@ model Incarico {
 
 model Fase {
 	@@map("fase")
-
-	id          	Int      @id @default(autoincrement())
-	createdAt   	DateTime @default(now())
-	updatedAt   	DateTime @updatedAt()
-
-
-	name		String
-
-	nominas	Nomina[]
-}
-
-model Progetto {
-	@@map("progetto")
 
 	id          	Int      @id @default(autoincrement())
 	createdAt   	DateTime @default(now())
@@ -72,6 +152,19 @@ model Azienda {
 	nominas	Nomina[]
 }
 
+model Progetto {
+	@@map("progetto")
+
+	id          	Int      @id @default(autoincrement())
+	createdAt   	DateTime @default(now())
+	updatedAt   	DateTime @updatedAt()
+
+
+	name		String
+
+	nominas	Nomina[]
+}
+
 model Nomina {
 	@@map("nomina")
 
@@ -79,14 +172,14 @@ model Nomina {
 	createdAt   	DateTime @default(now())
 	updatedAt   	DateTime @updatedAt()
 
+	progettoId		Int
+	progetto		Progetto	@relation(fields: [progettoId], references: [id])
+
 	incaricoId		Int
 	incarico		Incarico	@relation(fields: [incaricoId], references: [id])
 
-	faseId		Int
-	fase		Fase	@relation(fields: [faseId], references: [id])
-
-	progettoId		Int
-	progetto		Progetto	@relation(fields: [progettoId], references: [id])
+	faseId		Int?
+	fase		Fase?	@relation(fields: [faseId], references: [id])
 
 	tecnicoId		Int?
 	tecnico		Tecnico?	@relation(fields: [tecnicoId], references: [id])
