@@ -36,14 +36,17 @@ export class AssignementDto {
 	roleId?: number;
 	role?: RoleDto;
 
+	@IsOptional()
 	@IsNumber()
 	workCategoryId?: number;
 	workCategory?: WorkCategoryDto;
 
+	@IsOptional()
 	@IsNumber()
 	employeeId?: number;
 	employee?: EmployeeDto;
 
+	@IsOptional()
 	@IsNumber()
 	companyId?: number;
 	company?: CompanyDto;
