@@ -44,6 +44,7 @@ export class NominaDto {
 	tecnicoId?: number;
 	tecnico?: TecnicoDto;
 
+	@IsOptional()
 	@IsNumber()
 	aziendaId?: number;
 	azienda?: AziendaDto;
